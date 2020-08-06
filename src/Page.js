@@ -40,7 +40,7 @@ export default function Page() {
         Here is how the UI should look like:
       </Typography>
       <Box align="center">
-        <img src="mockup.svg" alt="Mockup" />
+        <img src="mockup.png" alt="Mockup" width={361} />
       </Box>
       <Typography variant="h6" gutterBottom>
         Here is the mock data you are getting at <code>src/Page.js:8</code>:

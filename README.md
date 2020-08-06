@@ -24,3 +24,5 @@ finish the whole thing.
 
 You should see the details of the mockup UI and the mock data when you visit
 http://localhost:3000/.
+
+![Mockup](./public/mockup.png)

@@ -6,6 +6,7 @@ import {usePlanner} from 'usePlanner';
 
 import TodoList from 'views/Todo';
 import Loading from 'components/Loading';
+import DayTodo from 'components/DayTodo';
 
 const CegiHealth = props => {
   const {loading, error, data} = usePlanner();
@@ -17,6 +18,7 @@ const CegiHealth = props => {
   // you can past mostly all available props, like minDate, maxDate, autoOk and so on
   return (
     <MuiPickersUtilsProvider utils={MomentUtils}>
+      <DayTodo onDateChange={() => false} />
       <TodoList edges={taskEdges} />
     </MuiPickersUtilsProvider>
   );

@@ -1,14 +1,10 @@
 import clsx from 'clsx';
 import format from 'date-fns/format';
-import isValid from 'date-fns/isValid';
 import isSameDay from 'date-fns/isSameDay';
-import endOfWeek from 'date-fns/endOfWeek';
 import React, {useState} from 'react';
-import startOfWeek from 'date-fns/startOfWeek';
 import isWithinInterval from 'date-fns/isWithinInterval';
 import {DatePicker} from '@material-ui/pickers';
 import {createStyles} from '@material-ui/styles';
-// this guy required only on the docs site to work with dynamic date library
 import {IconButton, withStyles} from '@material-ui/core';
 import {startOfDay, endOfDay} from 'date-fns';
 

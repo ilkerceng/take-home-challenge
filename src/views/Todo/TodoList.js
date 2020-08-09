@@ -35,11 +35,6 @@ const useStyles = makeStyles(theme => ({
 
 const TodoList = ({edges = []}) => {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   return (
     <div>

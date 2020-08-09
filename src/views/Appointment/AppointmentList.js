@@ -6,6 +6,7 @@ import {red} from '@material-ui/core/colors';
 import {Divider, makeStyles, CardActions, Button} from '@material-ui/core';
 import {blue} from '@material-ui/core/colors';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import {useRouter} from 'next/router';
 
 import AddItemButton from 'components/AddItemButton';
 import AppointmentItem from './AppointmentItem';
@@ -37,6 +38,13 @@ const useStyles = makeStyles(theme => ({
 
 const AppointmentList = ({edges = []}) => {
   const classes = useStyles();
+
+  const router = useRouter();
+
+  const onViewAll = e => {
+    e.preventDefault();
+    router.push('/appointments');
+  };
 
   return (
     <div>
@@ -75,6 +83,7 @@ const AppointmentList = ({edges = []}) => {
 
         <CardActions disableSpacing>
           <Button
+            onClick={onViewAll}
             fullWidth
             variant="outlined"
             color="secondary"

@@ -1,5 +1,6 @@
 import React from 'react';
-import clsx from 'clsx';
+import {useRouter} from 'next/router';
+
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
@@ -39,6 +40,12 @@ const useStyles = makeStyles(theme => ({
 
 const RecommendedList = ({edges = []}) => {
   const classes = useStyles();
+  const router = useRouter();
+
+  const onViewAll = e => {
+    e.preventDefault();
+    router.push('/recommendations');
+  };
 
   return (
     <div>
@@ -72,6 +79,7 @@ const RecommendedList = ({edges = []}) => {
 
         <CardActions disableSpacing>
           <Button
+            onClick={onViewAll}
             fullWidth
             variant="outlined"
             color="secondary"

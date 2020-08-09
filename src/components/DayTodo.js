@@ -1,13 +1,14 @@
 import clsx from 'clsx';
 import format from 'date-fns/format';
 import isSameDay from 'date-fns/isSameDay';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import isWithinInterval from 'date-fns/isWithinInterval';
 import {DatePicker} from '@material-ui/pickers';
 import {createStyles} from '@material-ui/styles';
 import {IconButton, withStyles} from '@material-ui/core';
 import {startOfDay, endOfDay, isEqual} from 'date-fns';
 import moment from 'moment';
+import CustomToolbar from './CustomToolbar';
 
 const styles = createStyles(theme => ({
   dayWrapper: {
@@ -143,20 +144,15 @@ const DayTodo = props => {
             </div>
           </IconButton>
         </div>
-        {hasAppointment && (
+        {(hasAppointment || hasTask) && (
           <div style={{textAlign: 'center'}}>
-            <span className={blueCircle} />
-          </div>
-        )}
-        {hasTask && (
-          <div style={{textAlign: 'center'}}>
-            <span className={greenCircle} />
+            {hasAppointment && <span className={blueCircle} />}
+            <span style={{marginRight: 3}} />
+            {hasTask && <span className={greenCircle} />}
           </div>
         )}
       </div>
     );
-
-    // return <span>{4}</span>;
   };
 
   return (
@@ -167,6 +163,15 @@ const DayTodo = props => {
       open={true}
       onChange={setSelectedDate}
       renderDay={renderWrappedWeekDay}
+      // ToolbarComponent={props => (
+      //   <CustomToolbar
+      //     {...props}
+      //     onMonthChange={month => {
+      //       // selectedDate.setMonth(month);
+      //       setSelectedDate(new Date('2020-12-12'));
+      //     }}
+      //   />
+      // )}
     />
   );
 };

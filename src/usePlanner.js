@@ -38,6 +38,6 @@ export const PLANNER_QUERY = gql`
   }
 `;
 
-export function usePlanner() {
+export function usePlanner(params) {
   return useQuery(PLANNER_QUERY);
 }

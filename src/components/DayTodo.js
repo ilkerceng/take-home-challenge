@@ -90,6 +90,11 @@ const DayTodo = props => {
     activityDates: {appointmentsDates, tasksDates},
   } = props;
 
+  const onDateChange = date => {
+    setSelectedDate(selectedDate);
+    props.onDateChange(date);
+  };
+
   const renderWrappedWeekDay = (
     date,
     selectedDate,
@@ -161,7 +166,7 @@ const DayTodo = props => {
       fullWidth={true}
       variant="static"
       open={true}
-      onChange={setSelectedDate}
+      onChange={onDateChange}
       renderDay={renderWrappedWeekDay}
       textFieldStyle={{width: '100%'}}
       Props

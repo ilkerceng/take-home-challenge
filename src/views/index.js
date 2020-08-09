@@ -12,7 +12,7 @@ import Loading from 'components/Loading';
 import DayTodo from 'components/DayTodo';
 
 const CegiHealth = props => {
-  const {loading, error, data} = usePlanner();
+  const {loading, error, data, refetch} = usePlanner();
   const {
     journey: {
       tasks: {edges: taskEdges = []} = {},
@@ -42,6 +42,11 @@ const CegiHealth = props => {
     //TODO an api call here and get new journey
   };
 
+  const onDateChange = date => {
+    //TODO: refetch with new Date
+    // refetch(date);
+  };
+
   const getItemsDates = edges => {
     return edges.map(({node: {startingDate} = {}} = {}) => startingDate);
   };
@@ -53,7 +58,7 @@ const CegiHealth = props => {
     <MuiPickersUtilsProvider utils={MomentUtils}>
       <DayTodo
         activityDates={{appointmentsDates, tasksDates}}
-        onDateChange={() => false}
+        onDateChange={onDateChange}
       />
       <TodoList edges={taskEdges} onTodoAdd={onTodoAdd} />
       <RecommendedList

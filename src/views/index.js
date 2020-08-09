@@ -30,11 +30,11 @@ const CegiHealth = props => {
     //TODO an api call here and get new journey
   };
 
-  const onRecommendedAdd = id => {
+  const onRecommendedAdd = recommended => {
     //TODO an api call here and get new journey
   };
 
-  const onRecommendedRemove = recommended => {
+  const onRecommendedRemove = id => {
     //TODO an api call here and get new journey
   };
 
@@ -55,9 +55,16 @@ const CegiHealth = props => {
         activityDates={{appointmentsDates, tasksDates}}
         onDateChange={() => false}
       />
-      <TodoList edges={taskEdges} />
-      <RecommendedList edges={recommendedTaskDefinitionsEdges} />
-      <AppointmentList edges={appointmentsEdges} />
+      <TodoList edges={taskEdges} onTodoAdd={onTodoAdd} />
+      <RecommendedList
+        edges={recommendedTaskDefinitionsEdges}
+        onRecommendedAdd={onRecommendedAdd}
+        onRecommendedRemove={onRecommendedRemove}
+      />
+      <AppointmentList
+        edges={appointmentsEdges}
+        onAppointmentAdd={onAppointmentAdd}
+      />
     </MuiPickersUtilsProvider>
   );
 };

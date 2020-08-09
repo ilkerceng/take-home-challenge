@@ -8,12 +8,16 @@ export default function RecommendedItem({
     node: {slug, title},
   },
   hasDivider = false,
+  onRecommendedAdd,
+  onRecommendedRemove,
 }) {
   return (
     <>
       <Grid container wrap="nowrap" spacing={2}>
         <Grid item>
-          <AddItemButton />
+          <AddItemButton
+            onClick={() => onRecommendedRemove(/** send Recommended ID Here */)}
+          />
         </Grid>
         <Grid item xs zeroMinWidth>
           <Grid container wrap="nowrap" spacing={2}>
@@ -31,7 +35,11 @@ export default function RecommendedItem({
               </Typography>
             </Grid>
             <Grid item xs={2}>
-              <IconButton>
+              <IconButton
+                onClick={() =>
+                  onRecommendedAdd(/** send new Recommended ITEM */)
+                }
+              >
                 <ClearIcon />
               </IconButton>
             </Grid>

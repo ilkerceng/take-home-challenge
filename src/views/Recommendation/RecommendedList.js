@@ -37,7 +37,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const RecommendedList = ({edges = []}) => {
+const RecommendedList = ({
+  edges = [],
+  onRecommendedAdd,
+  onRecommendedRemove,
+}) => {
   const classes = useStyles();
   const router = useRouter();
 
@@ -72,6 +76,8 @@ const RecommendedList = ({edges = []}) => {
               hasDivider={index !== edges.length - 1}
               todo={todo}
               key={index}
+              onRecommendedAdd={onRecommendedAdd}
+              onRecommendedRemove={onRecommendedRemove}
             />
           ))}
         </CardContent>

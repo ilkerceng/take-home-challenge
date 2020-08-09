@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const AppointmentList = ({edges = []}) => {
+const AppointmentList = ({edges = [], onAppointmentAdd}) => {
   const classes = useStyles();
 
   const router = useRouter();
@@ -62,7 +62,12 @@ const AppointmentList = ({edges = []}) => {
               <span style={{color: 'blue', textAlign: 'center'}}>
                 Appointments
               </span>
-              <AddItemButton color={blue} />
+              <AddItemButton
+                color={blue}
+                onClick={() =>
+                  props.onAppointmentAdd(/** TODO: send new appointment add here */)
+                }
+              />
             </div>
           }
         />

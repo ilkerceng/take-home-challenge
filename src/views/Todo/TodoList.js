@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const TodoList = ({edges = []}) => {
+const TodoList = ({edges = [], onTodoAdd}) => {
   const classes = useStyles();
 
   return (
@@ -50,7 +50,9 @@ const TodoList = ({edges = []}) => {
               }}
             >
               <span style={{color: 'green', textAlign: 'center'}}>To-Dos</span>
-              <AddItemButton />
+              <AddItemButton
+                onClick={() => onTodoAdd(/** TODO: send new todo add here */)}
+              />
             </div>
           }
         />

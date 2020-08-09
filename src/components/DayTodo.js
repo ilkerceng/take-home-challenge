@@ -3,27 +3,14 @@ import format from 'date-fns/format';
 import isValid from 'date-fns/isValid';
 import isSameDay from 'date-fns/isSameDay';
 import endOfWeek from 'date-fns/endOfWeek';
-import React, {PureComponent, useState} from 'react';
+import React, {useState} from 'react';
 import startOfWeek from 'date-fns/startOfWeek';
 import isWithinInterval from 'date-fns/isWithinInterval';
 import {DatePicker} from '@material-ui/pickers';
 import {createStyles} from '@material-ui/styles';
 // this guy required only on the docs site to work with dynamic date library
 import {IconButton, withStyles} from '@material-ui/core';
-
-const DayTodo = props => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
-
-  return (
-    <DatePicker
-      label="Week picker"
-      value={selectedDate}
-      variant="static"
-      open={true}
-      onChange={setSelectedDate}
-    />
-  );
-};
+import {startOfDay, endOfDay} from 'date-fns';
 
 const styles = createStyles(theme => ({
   dayWrapper: {
@@ -52,7 +39,8 @@ const styles = createStyles(theme => ({
     color: '#676767',
   },
   highlight: {
-    background: theme.palette.primary.main,
+    // background: theme.palette.primary.main,
+    backgroundColor: 'black',
     color: theme.palette.common.white,
   },
   firstHighlight: {
@@ -65,6 +53,102 @@ const styles = createStyles(theme => ({
     borderTopRightRadius: '50%',
     borderBottomRightRadius: '50%',
   },
+  circle: {
+    width: 5,
+    height: 5,
+    borderRadius: '50%',
+    display: 'inline-block',
+  },
+  greenCircle: {
+    backgroundColor: 'green',
+  },
+  blueCircle: {
+    backgroundColor: 'blue',
+  },
 }));
+
+function makeJSDateObject(date) {
+  if (date) {
+    return date.clone().toDate();
+  }
+
+  if (moment.isMoment(date)) {
+    return date.clone().toDate();
+  }
+
+  if (date) {
+    return date.toJSDate();
+  }
+
+  if (date) {
+    return new Date(date.getTime());
+  }
+
+  return date;
+}
+
+const DayTodo = props => {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const renderWrappedWeekDay = (
+    date,
+    selectedDate,
+    dayInCurrentMonth,
+    dayComponent,
+  ) => {
+    const {classes} = props;
+    let dateClone = makeJSDateObject(date);
+    let selectedDateClone = makeJSDateObject(selectedDate);
+
+    const start = startOfDay(selectedDateClone);
+    const end = endOfDay(selectedDateClone);
+
+    const dayIsBetween = isWithinInterval(dateClone, {start, end});
+    const isFirstDay = isSameDay(dateClone, start);
+    const isLastDay = isSameDay(dateClone, end);
+
+    const wrapperClassName = clsx({
+      [classes.highlight]: dayIsBetween,
+      [classes.firstHighlight]: isFirstDay,
+      [classes.endHighlight]: isLastDay,
+    });
+
+    const dayClassName = clsx(classes.day, {
+      [classes.nonCurrentMonthDay]: !dayInCurrentMonth,
+      [classes.highlightNonCurrentMonthDay]: !dayInCurrentMonth && dayIsBetween,
+    });
+
+    const greenCircle = clsx(classes.circle, classes.greenCircle);
+    const blueCircle = clsx(classes.circle, classes.blueCircle);
+
+    return (
+      <div>
+        <div className={wrapperClassName}>
+          <IconButton className={dayClassName}>
+            <div style={{textAlign: 'center'}}>
+              <span> {format(dateClone, 'd')} </span>
+            </div>
+          </IconButton>
+        </div>
+        <div style={{textAlign: 'center'}}>
+          <span className={blueCircle} />
+        </div>
+      </div>
+    );
+
+    // return <span>{4}</span>;
+  };
+
+  return (
+    <DatePicker
+      label="Week picker"
+      value={selectedDate}
+      variant="static"
+      open={true}
+      onChange={setSelectedDate}
+      renderDay={renderWrappedWeekDay}
+    />
+  );
+};
 
 export default withStyles(styles)(DayTodo);

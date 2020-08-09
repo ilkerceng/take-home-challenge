@@ -13,7 +13,6 @@ import AppointmentItem from './AppointmentItem';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    maxWidth: 345,
     borderRadius: 10,
     marginTop: 10,
   },
@@ -70,14 +69,14 @@ const AppointmentList = ({edges = []}) => {
         <Divider />
         <CardContent>
           {edges.map((todo, index) => (
-            <>
-              <AppointmentItem todo={todo} key={index} />
+            <div key={index}>
+              <AppointmentItem todo={todo} />
               {edges.length - 1 !== index && (
                 <Divider
                   style={{height: 10, marginTop: 20, marginBottom: 20}}
                 />
               )}
-            </>
+            </div>
           ))}
         </CardContent>
 
@@ -86,9 +85,9 @@ const AppointmentList = ({edges = []}) => {
             onClick={onViewAll}
             fullWidth
             variant="outlined"
-            color="secondary"
             className={classes.button}
             endIcon={<ArrowForwardIcon />}
+            style={{color: 'blue'}}
           >
             What You Need to Know
           </Button>

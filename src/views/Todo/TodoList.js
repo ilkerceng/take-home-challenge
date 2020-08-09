@@ -10,7 +10,6 @@ import AddItemButton from 'components/AddItemButton';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    maxWidth: 345,
     borderRadius: 10,
     marginTop: 10,
   },

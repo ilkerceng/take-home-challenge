@@ -45,7 +45,7 @@ export default function AppointmentItem({
         {icon: <CalendarTodayIcon fontSize="small" />, name: time + meridiem},
         {icon: <RoomOutlinedIcon fontSize="small" />, name: locationTitle},
       ].map(({icon, name}, index) => (
-        <Grid container wrap="nowrap" spacing={2}>
+        <Grid container wrap="nowrap" spacing={2} key={index}>
           <Grid item>{icon}</Grid>
           <Grid item xs zeroMinWidth>
             <Grid container wrap="nowrap" spacing={2}>

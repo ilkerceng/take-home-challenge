@@ -12,7 +12,6 @@ import RecommendedItem from './RecommendedItem';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    maxWidth: 345,
     borderRadius: 10,
     marginTop: 2,
   },

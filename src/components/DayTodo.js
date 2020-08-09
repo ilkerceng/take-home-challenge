@@ -85,7 +85,7 @@ function makeJSDateObject(date) {
 }
 
 const DayTodo = props => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date('2020-06-12'));
   const {
     activityDates: {appointmentsDates, tasksDates},
   } = props;

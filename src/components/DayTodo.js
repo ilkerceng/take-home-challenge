@@ -6,7 +6,8 @@ import isWithinInterval from 'date-fns/isWithinInterval';
 import {DatePicker} from '@material-ui/pickers';
 import {createStyles} from '@material-ui/styles';
 import {IconButton, withStyles} from '@material-ui/core';
-import {startOfDay, endOfDay} from 'date-fns';
+import {startOfDay, endOfDay, isEqual} from 'date-fns';
+import moment from 'moment';
 
 const styles = createStyles(theme => ({
   dayWrapper: {
@@ -85,6 +86,9 @@ function makeJSDateObject(date) {
 
 const DayTodo = props => {
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const {
+    activityDates: {appointmentsDates, tasksDates},
+  } = props;
 
   const renderWrappedWeekDay = (
     date,
@@ -114,6 +118,19 @@ const DayTodo = props => {
       [classes.highlightNonCurrentMonthDay]: !dayInCurrentMonth && dayIsBetween,
     });
 
+    const hasActivity = dates => {
+      return dates.some(d => {
+        const dateFormat = 'YYYY-MM-DD';
+
+        return isEqual(
+          new Date(moment(d).format(dateFormat)),
+          new Date(date.format(dateFormat)),
+        );
+      });
+    };
+    const hasAppointment = hasActivity(appointmentsDates);
+    const hasTask = hasActivity(tasksDates);
+
     const greenCircle = clsx(classes.circle, classes.greenCircle);
     const blueCircle = clsx(classes.circle, classes.blueCircle);
 
@@ -126,9 +143,16 @@ const DayTodo = props => {
             </div>
           </IconButton>
         </div>
-        <div style={{textAlign: 'center'}}>
-          <span className={blueCircle} />
-        </div>
+        {hasAppointment && (
+          <div style={{textAlign: 'center'}}>
+            <span className={blueCircle} />
+          </div>
+        )}
+        {hasTask && (
+          <div style={{textAlign: 'center'}}>
+            <span className={greenCircle} />
+          </div>
+        )}
       </div>
     );
 

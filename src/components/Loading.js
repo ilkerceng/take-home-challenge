@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 //TODO: create better loading component
 export default function Loading(props) {

@@ -1,16 +1,15 @@
-import "date-fns";
-import React from "react";
-import MomentUtils from "@date-io/moment";
-import { MuiPickersUtilsProvider } from "@material-ui/pickers";
-import { usePlanner } from "usePlanner";
+import 'date-fns';
+import React from 'react';
+import MomentUtils from '@date-io/moment';
+import {MuiPickersUtilsProvider} from '@material-ui/pickers';
+import {usePlanner} from 'usePlanner';
 
-import TodoList from "views/Todo";
-import Loading from "components/Loading";
+import TodoList from 'views/Todo';
+import Loading from 'components/Loading';
 
-const CegiHealth = (props) => {
-  const { loading, error, data } = usePlanner();
-  const { journey: { tasks: { edges: taskEdges = [] } = {} } = {} } =
-    data || {};
+const CegiHealth = props => {
+  const {loading, error, data} = usePlanner();
+  const {journey: {tasks: {edges: taskEdges = []} = {}} = {}} = data || {};
 
   if (loading) return <Loading />;
   if (error) return <ErrorModal />;

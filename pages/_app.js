@@ -1,11 +1,11 @@
-import { MockedProvider } from "@apollo/client/testing";
-import React from "react";
-import PropTypes from "prop-types";
-import Head from "next/head";
-import { ThemeProvider } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import theme from "../src/theme";
-import { PLANNER_QUERY } from "../src/usePlanner";
+import {MockedProvider} from '@apollo/client/testing';
+import React from 'react';
+import PropTypes from 'prop-types';
+import Head from 'next/head';
+import {ThemeProvider} from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import theme from '../src/theme';
+import {PLANNER_QUERY} from '../src/usePlanner';
 
 const mocks = [
   {
@@ -19,21 +19,21 @@ const mocks = [
             edges: [
               {
                 node: {
-                  slug: "prepare-your-chemo-bag",
-                  title: "Prepare your chemo bag",
+                  slug: 'prepare-your-chemo-bag',
+                  title: 'Prepare your chemo bag',
                 },
               },
               {
                 node: {
-                  slug: "put-lotion-on-especially-on-your-hands-and-feet",
-                  title: "Put lotion on (especially on your hands and feet) ",
+                  slug: 'put-lotion-on-especially-on-your-hands-and-feet',
+                  title: 'Put lotion on (especially on your hands and feet) ',
                 },
               },
               {
                 node: {
-                  slug: "tip-keep-a-lint-roller-in-your-purse-or-bag-to-rol",
+                  slug: 'tip-keep-a-lint-roller-in-your-purse-or-bag-to-rol',
                   title:
-                    "Tip: keep a lint roller in your purse or bag to roll over your head while hair falls out to avoid it getting places",
+                    'Tip: keep a lint roller in your purse or bag to roll over your head while hair falls out to avoid it getting places',
                 },
               },
             ],
@@ -42,23 +42,23 @@ const mocks = [
             edges: [
               {
                 node: {
-                  slug: "chemotherapy-appointment",
-                  startingDate: "2020-06-12T07:36:57+00:00",
-                  title: "Chemotherapy Appointment",
+                  slug: 'chemotherapy-appointment',
+                  startingDate: '2020-06-12T07:36:57+00:00',
+                  title: 'Chemotherapy Appointment',
                   location: {
-                    title: "UCSF Medical Center",
-                    slug: "ucsf-medical-center",
+                    title: 'UCSF Medical Center',
+                    slug: 'ucsf-medical-center',
                   },
                 },
               },
               {
                 node: {
-                  slug: "dentist-appointment",
-                  startingDate: "2020-06-14T07:36:57+00:00",
-                  title: "Dentist Appointment",
+                  slug: 'dentist-appointment',
+                  startingDate: '2020-06-14T07:36:57+00:00',
+                  title: 'Dentist Appointment',
                   location: {
-                    title: "Dentistry School",
-                    slug: "dentistry-school",
+                    title: 'Dentistry School',
+                    slug: 'dentistry-school',
                   },
                 },
               },
@@ -68,25 +68,26 @@ const mocks = [
             edges: [
               {
                 node: {
-                  slug: "get-blood-tests-to-check-kidney-liver-and-heart-fu",
-                  startingDate: "2020-06-12T07:38:36+00:00",
+                  slug: 'get-blood-tests-to-check-kidney-liver-and-heart-fu',
+                  startingDate: '2020-06-12T07:38:36+00:00',
                   title:
-                    "Get blood tests to check kidney, liver, and heart function",
+                    'Get blood tests to check kidney, liver, and heart function',
                 },
               },
               {
                 node: {
-                  slug: "stop-taking-herbal-remedies-and-other-dietary-supplements",
-                  startingDate: "2020-06-12T07:38:36+00:00",
+                  slug:
+                    'stop-taking-herbal-remedies-and-other-dietary-supplements',
+                  startingDate: '2020-06-12T07:38:36+00:00',
                   title:
-                    "Stop taking herbal remedies and other dietary supplements",
+                    'Stop taking herbal remedies and other dietary supplements',
                 },
               },
               {
                 node: {
-                  slug: "get-an-aromatherapy-massage",
-                  startingDate: "2020-06-11T07:38:57+00:00",
-                  title: "Get an aromatherapy massage",
+                  slug: 'get-an-aromatherapy-massage',
+                  startingDate: '2020-06-11T07:38:57+00:00',
+                  title: 'Get an aromatherapy massage',
                 },
               },
             ],
@@ -98,11 +99,11 @@ const mocks = [
 ];
 
 export default function MyApp(props) {
-  const { Component, pageProps } = props;
+  const {Component, pageProps} = props;
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector("#jss-server-side");
+    const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }

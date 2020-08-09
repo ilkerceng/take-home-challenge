@@ -8,7 +8,6 @@ import {createStyles} from '@material-ui/styles';
 import {IconButton, withStyles} from '@material-ui/core';
 import {startOfDay, endOfDay, isEqual} from 'date-fns';
 import moment from 'moment';
-import CustomToolbar from './CustomToolbar';
 
 const styles = createStyles(theme => ({
   dayWrapper: {
@@ -159,10 +158,13 @@ const DayTodo = props => {
     <DatePicker
       label="Week picker"
       value={selectedDate}
+      fullWidth={true}
       variant="static"
       open={true}
       onChange={setSelectedDate}
       renderDay={renderWrappedWeekDay}
+      textFieldStyle={{width: '100%'}}
+      Props
       // ToolbarComponent={props => (
       //   <CustomToolbar
       //     {...props}

@@ -49,11 +49,6 @@ const CegiHealth = props => {
   const appointmentsDates = getItemsDates(appointmentsEdges);
   const tasksDates = getItemsDates(taskEdges);
 
-  console.log('appointmentsDates');
-  console.log(appointmentsDates);
-  console.log('tasks');
-  console.log(tasksDates);
-
   return (
     <MuiPickersUtilsProvider utils={MomentUtils}>
       <DayTodo
